@@ -40,6 +40,7 @@ import {
   SiGodotengine,
 } from "react-icons/si";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const NeuHero = () => {
   return (
@@ -79,9 +80,11 @@ const Copy = () => {
         Repo.Hub! It is github repositories market place, helping you monetizing
         your code 🙌
       </p>
-      <button className="rounded-lg bg-indigo-600 p-3 uppercase text-white transition-colors hover:bg-indigo-700">
-        <span className="font-bold">Get started 🚀 </span>
-      </button>
+      <Link to="/signin">
+        <button className="rounded-lg bg-indigo-600 p-3 uppercase text-white transition-colors hover:bg-indigo-700">
+          <span className="font-bold">Get started 🚀 </span>
+        </button>
+      </Link>
     </>
   );
 };
@@ -221,7 +224,7 @@ const LogoItemsTop = () => (
   <>
     <LogoItem Icon={ArrowBigLeft} name="Promote your repo on" />
     <LogoItem Icon={ArrowBigRight} name="" />
-    <LogoItem Icon={SiYoutube} name="Youtuber" />
+    <LogoItem Icon={SiYoutube} name="Youtube" />
     <LogoItem Icon={SiInstagram} name="Instagram" />
     <LogoItem Icon={SiTiktok} name="Tiktok" />
     <LogoItem Icon={SiUnity} name="Unity" />
@@ -235,7 +238,7 @@ const LogoItemsBottom = () => (
   <>
     <LogoItem Icon={ArrowBigLeft} name="Promote your repo on" />
     <LogoItem Icon={ArrowBigRight} name="" />
-    <LogoItem Icon={SiYoutube} name="Youtuber" />
+    <LogoItem Icon={SiYoutube} name="Youtube" />
     <LogoItem Icon={SiInstagram} name="Instagram" />
     <LogoItem Icon={SiTiktok} name="Tiktok" />
     <LogoItem Icon={SiUnity} name="Unity" />
