@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { setRepoHubAccessToken } from "../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { getUserDetails } from "../redux/actions/userActions";
 
 const GithubCallback = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const GithubCallback = () => {
         expires: 1 / 6,
       });
       dispatch(setRepoHubAccessToken(repo_hub_access_token));
+      dispatch(getUserDetails());
       navigate("/home");
     } else {
       navigate("/");

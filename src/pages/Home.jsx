@@ -8,7 +8,8 @@ import PublishRepo from "./PublishRepo";
 import PublishedRepos from "./PublishedRepos";
 import PurchasedRepos from "./PurchasedRepos";
 import Analytics from "./Analytics";
-import Auth from "../utils/Auth";
+import Auth from "../hoc/Auth";
+import RepoDetails from "./RepoDetails";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
       <RetractingSidebar />
       <Routes>
         <Route path="/" element={<MarketPlace />} />
-        {/* Selected repo or a different route */}
+        <Route path="/:repoId" element={<RepoDetails />} />
         <Route
           path="/profile"
           element={

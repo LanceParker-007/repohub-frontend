@@ -1,14 +1,14 @@
-import {
-  createSlice,
-  isFulfilled,
-  isPending,
-  isRejected,
-} from "@reduxjs/toolkit";
-import { signInWithGithub } from "../actions/userActions";
+import { createSlice } from "@reduxjs/toolkit";
+import { getUserDetails } from "../actions/userActions";
 
 const initialState = {
   repoHubAccessToken: null,
-  userDetails: null,
+  userDetails: {
+    githubName: "",
+    githubUsername: "",
+    githubUserId: "",
+    githubAvatar: "",
+  },
   publishedRepos: [],
   purchasedRepos: [],
 };
@@ -20,15 +20,47 @@ const userSlice = createSlice({
     setRepoHubAccessToken(state, action) {
       state.repoHubAccessToken = action.payload;
     },
-    setUserDetails(state, action) {},
-    setPublishedRepos(state, action) {},
-    setPurchasedRepos(state, action) {},
+    setUserDetails(state, action) {
+      state.userDetails = action.payload;
+    },
+    setPublishedRepos(state, action) {
+      state.publishedRepos = action.payload;
+    },
+    setPurchasedRepos(state, action) {
+      state.purchasedRepos = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signInWithGithub.pending, (state, action) => {})
-      .addCase(signInWithGithub.fulfilled, (state, action) => {})
-      .addCase(signInWithGithub.rejected, (state, action) => {});
+      .addCase(getUserDetails.pending, (state, action) => {})
+      .addCase(getUserDetails.fulfilled, (state, action) => {
+        localStorage.setItem(
+          "userDetails",
+          JSON.stringify({
+            githubName: action?.payload?.name,
+            githubUsername: action?.payload?.username,
+            githubUserId: action?.payload?.githubId,
+            githubAvatar: action?.payload?.avatar,
+          })
+        );
+        localStorage.setItem(
+          "publishedRepos",
+          JSON.stringify(action?.payload?.publishedRepos)
+        );
+        localStorage.setItem(
+          "purchasedRepos",
+          JSON.stringify(action?.payload?.purchasedRepos)
+        );
+        state.userDetails = {
+          githubName: action?.payload?.name,
+          githubUsername: action?.payload?.username,
+          githubUserId: action?.payload?.githubId,
+          githubAvatar: action?.payload?.avatar,
+        };
+        state.publishedRepos = action?.payload?.publishedRepos;
+        state.purchasedRepos = action?.payload?.purchasedRepos;
+      })
+      .addCase(getUserDetails.rejected, (state, action) => {});
   },
 });
 

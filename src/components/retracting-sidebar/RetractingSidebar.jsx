@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FiBarChart, FiChevronsRight, FiShoppingCart } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { BiDollarCircle, BiLogOut } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Globe } from "lucide-react";
 import { CgProfile } from "react-icons/cg";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
@@ -163,15 +163,25 @@ const navOptions = [
 ];
 
 const RetractingSidebar = () => {
-  const [open, setOpen] = useState(true);
-  const [selected, setSelected] = useState("Browse Repos");
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+
+  useEffect(() => {
+    setSelected(
+      navOptions.find(
+        (navOption) => navOption.to === window.location.href.slice(21)
+      )?.title
+    );
+  }, []);
 
   useEffect(() => {
     if (selected === "Logout") {
+      // Remove Cookie and data from localstorage and
       Cookies.remove("repo_hub_access_token");
-      // TODO: Remove data from localstorage too if any
-      navigate("/");
+      localStorage.removeItem("userDetails");
+      localStorage.removeItem("publishedRepos");
+      localStorage.removeItem("purchasedRepos");
+      window.location.replace("/");
     }
   }, [selected]);
 

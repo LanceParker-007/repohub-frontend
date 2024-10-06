@@ -6,7 +6,7 @@ import Signin from "./pages/Signin";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PageDoesNotExist from "./pages/PageDoesNotExist";
-import GithubCallback from "./utils/GithubCallback";
+import GithubCallback from "./pages/GithubCallback";
 
 const App = () => {
   return (

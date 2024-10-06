@@ -1,18 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
-export const signInWithGithub = createAsyncThunk(
-  "signInWithGithub",
-  async ({ _ }, rejectWithValue) => {
-    console.log("signin-with-github-called");
-
+export const getUserDetails = createAsyncThunk(
+  "getUserDetails",
+  async (rejectWithValue) => {
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/github/callback`,
+      const { data } = await axiosInstance.post(
+        `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/user/profile`,
         {}
       );
 
-      console.log(data);
+      if (data.success) {
+        return data.data;
+      } else {
+        rejectWithValue(data);
+      }
     } catch (error) {
       rejectWithValue(error.message);
     }

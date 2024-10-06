@@ -23,7 +23,6 @@ const LandingPage = () => {
 
   useEffect(() => {
     const repo_hub_access_token = Cookies.get("repo_hub_access_token");
-    console.log(repo_hub_access_token);
 
     if (repo_hub_access_token) {
       dispatch(setRepoHubAccessToken(repo_hub_access_token));
