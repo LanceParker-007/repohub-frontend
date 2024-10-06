@@ -82,18 +82,6 @@ const Testimonial = ({ imgSrc, name, title, company, content }) => (
 
 export const OPTIONS = [
   {
-    title: "Startups",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Jeff"
-        name="Jeff W."
-        title="CEO"
-        company="The Company"
-        content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit qui unde perspiciatis nam in maxime impedit repudiandae veniam quibusdam enim, velit minus necessitatibus quaerat quos similique, odio earum!"
-      />
-    ),
-  },
-  {
     title: "YouTubers",
     Content: () => (
       <Testimonial
@@ -117,18 +105,7 @@ export const OPTIONS = [
       />
     ),
   },
-  {
-    title: "Authors",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Dani"
-        name="Moriah H."
-        title="Author"
-        company="Books About Things"
-        content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis qui fuga, deserunt doloribus, vero autem libero sed dolorum nostrum quidem in soluta magni eos excepturi."
-      />
-    ),
-  },
+
   {
     title: "Designers",
     Content: () => (
@@ -138,54 +115,6 @@ export const OPTIONS = [
         title="UI/UX Design"
         company="The Other Company"
         content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex a laborum earum quo unde pariatur consequuntur molestias!"
-      />
-    ),
-  },
-  {
-    title: "Consultants",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Stetson"
-        name="Stetson R."
-        title="Consultant"
-        company="The Company Company"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, dicta. Doloremque, hic magnam? Eveniet quisquam porro rerum, voluptatem et aliquam eaque nesciunt quod magni veritatis tempora ducimus!"
-      />
-    ),
-  },
-  {
-    title: "Photographers",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Patty"
-        name="Patty G."
-        title="Photographer"
-        company="@ThePictureLady"
-        content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, quam? Quia veniam cupiditate officiis."
-      />
-    ),
-  },
-  {
-    title: "Videographers",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Kert"
-        name="Kert Y."
-        title="Film Maker"
-        company="@MovieDude"
-        content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste, eius corrupti! Alias dolore quibusdam ipsum magnam delectus nulla sint harum ab?"
-      />
-    ),
-  },
-  {
-    title: "Local Business",
-    Content: () => (
-      <Testimonial
-        imgSrc="https://api.dicebear.com/8.x/notionists/svg?seed=Joanne"
-        name="Joanne F."
-        title="Business Owner"
-        company="The Local Company"
-        content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis qui fuga, deserunt doloribus, vero autem libero sed dolorum nostrum quidem in soluta magni eos excepturi."
       />
     ),
   },

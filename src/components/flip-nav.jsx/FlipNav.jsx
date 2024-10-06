@@ -7,7 +7,7 @@ const FlipNavWrapper = ({ children }) => {
   return (
     <div className="bg-gray-50 ">
       <FlipNav />
-      <div className="h-screen">{children}</div>
+      <div className="">{children}</div>
     </div>
   );
 };
@@ -58,10 +58,11 @@ const NavLeft = ({ setIsOpen }) => {
         <FiMenu />
       </motion.button>
       <Logo />
-      <NavLink text="Solutions" />
-      <NavLink text="Community" />
+      <NavLink text="Features" />
       <NavLink text="Pricing" />
-      <NavLink text="Company" />
+      <NavLink text="About" />
+      <NavLink text="Privacy" />
+      <NavLink text="T&C" />
     </div>
   );
 };
@@ -108,9 +109,10 @@ const NavMenu = ({ isOpen }) => {
       className="absolute p-4 bg-white shadow-lg left-0 right-0 top-full origin-top flex flex-col gap-4"
     >
       <MenuLink text="Solutions" />
-      <MenuLink text="Community" />
+      <MenuLink text="Features" />
       <MenuLink text="Pricing" />
-      <MenuLink text="Company" />
+      <MenuLink text="About" />
+      <MenuLink text="T&C" />
     </motion.div>
   );
 };

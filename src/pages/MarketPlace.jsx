@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import axiosInstance from "../utils/axiosInstance";
 import RepoCard from "../components/repo-card/RepoCard";
 
@@ -18,7 +17,7 @@ export default function MarketplaceDashboard() {
         `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/repo/published`,
         {
           page,
-          limit: 6, // Showing 6 items per page to match the grid layout
+          limit: 6,
           search,
         }
       );
@@ -104,15 +103,12 @@ export default function MarketplaceDashboard() {
               ))}
             </div>
 
-            <div className="mt-8 flex justify-between items-center">
-              <p className="text-sm text-slate-600">
-                Showing {repositories.length} of {totalRepos} repositories
-              </p>
-              <div className="flex items-center space-x-2">
+            <div className="mt-8 flex flex-col items-center">
+              <div className="flex items-center space-x-2 mb-4">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="p-2 rounded-full bg-slate-100 text-slate-600 disabled:opacity-50"
+                  className="p-2 rounded-md bg-indigo-500 text-white disabled:opacity-50 disabled:bg-indigo-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -127,13 +123,23 @@ export default function MarketplaceDashboard() {
                     />
                   </svg>
                 </button>
-                <span className="text-sm text-slate-600">
-                  Page {currentPage} of {totalPages}
-                </span>
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`w-8 h-8 rounded-md ${
+                      currentPage === index + 1
+                        ? "bg-indigo-500 text-white"
+                        : "bg-white text-indigo-500 border border-indigo-500"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="p-2 rounded-full bg-slate-100 text-slate-600 disabled:opacity-50"
+                  className="p-2 rounded-md bg-indigo-500 text-white disabled:opacity-50 disabled:bg-indigo-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -149,6 +155,9 @@ export default function MarketplaceDashboard() {
                   </svg>
                 </button>
               </div>
+              <p className="text-sm text-slate-600">
+                Showing {repositories.length} of {totalRepos} repositories
+              </p>
             </div>
           </>
         )}

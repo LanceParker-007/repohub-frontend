@@ -222,32 +222,36 @@ export const data = [
     id: 1,
     title: "Issues",
     Component: IssuesComponent,
-    cardTitle: "Title for Issues feature",
-    cardSubtitle:
-      "Explain what the Issues feature does and why it's different or better than your competitors.",
+    cardTitle: "No dedicated market place!",
+    cardSubtitle: `There is not a dedicated market place which allows which allows to 
+    monetize a person's private github repositories! There exists ways like adding as a 
+    collaborator or share zip file etc but these are solutions. You setup your own site or 
+    have to host your zip files etc.`,
   },
   {
     id: 2,
-    title: "Kanban",
+    title: "Solution",
     Component: KanbanComponent,
-    cardTitle: "Title for Kanban feature",
-    cardSubtitle:
-      "Explain what the Kanban feature does and why it's different or better than your competitors.",
+    cardTitle: "Repo.Hub",
+    cardSubtitle: `Repo.Hub is a market place of private github repositories! 
+    One can easily setup their private github repository code for selling online!`,
   },
   {
     id: 3,
-    title: "Gantt",
+    title: "Who is it for?",
     Component: GanttComponent,
-    cardTitle: "Title for Gantt feature",
-    cardSubtitle:
-      "Explain what the Gantt feature and why it's different or better than your competitors.",
+    cardTitle: "For Developers",
+    cardSubtitle: `It is for developers who want to earn by coding. 
+    Normally the developer setup his or her own website or does buy me a coffee to sell his code. 
+    Sometimes, the developer adds people as collaborators! Which are not a convinient way to setup your monetizing!
+    Repo.Hub is a fastand easy way to get things done!`,
   },
   {
     id: 4,
-    title: "Documentation",
+    title: "Trust and Security!",
     Component: DocumentationComponent,
-    cardTitle: "Title for Documentation feature",
-    cardSubtitle:
-      "Explain what the Documentation feature and why it's different or better than your competitors.",
+    cardTitle: "How do we trust Repo.Hub!",
+    cardSubtitle: `We are very tight on security. We do not keep your code with us! 
+      We deliver a copy of your reposiory when someone pays for it 👍`,
   },
 ];

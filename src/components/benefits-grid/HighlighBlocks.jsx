@@ -14,6 +14,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import { CardTitle } from "./CardTitle";
 import { CardSubtitle } from "./CardSubtitle";
+import { TimerIcon } from "lucide-react";
 
 export const HighlighBlocks = () => {
   return (
@@ -21,57 +22,39 @@ export const HighlighBlocks = () => {
       <HighlightBlock
         Icon={FiDollarSign}
         iconClassName="text-green-500"
-        title="Save on planning"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        title="Monetize at your price!"
+        subtitle="You set up a price you want!"
       />
       <HighlightBlock
         Icon={FiArrowUpRight}
         iconClassName="text-pink-500"
-        title="Grow your margins"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        title="Grow your margins!"
+        subtitle="We charge very low margins so that you can earn more!"
       />
       <HighlightBlock
-        Icon={FiSmile}
+        Icon={TimerIcon}
         iconClassName="text-blue-500"
-        title="Increase productivity"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-      />
-      <HighlightBlock
-        Icon={FiCoffee}
-        iconClassName="text-orange-500"
-        title="No more late nights"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-      />
-      <HighlightBlock
-        Icon={FiFeather}
-        iconClassName="text-zinc-500"
-        title="Take better notes"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-      />
-      <HighlightBlock
-        Icon={FiInbox}
-        iconClassName="text-purple-500"
-        title="Reach inbox zero"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        title="Save time and hussle!"
+        subtitle="With our easy to do setup you are quickly ready to monetize your repos."
       />
       <HighlightBlock
         Icon={FiMove}
         iconClassName="text-fuchsia-500"
         title="Remain flexible"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        subtitle="Easily update your repos and price without!"
       />
       <HighlightBlock
         Icon={FiClipboard}
         iconClassName="text-red-500"
         title="Stay on track"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+        subtitle="You can keep track of all your repos, how they are helping others!"
       />
-      <HighlightBlock
+      {/* <HighlightBlock
         Icon={FiRepeat}
         iconClassName="text-yellow-500"
         title="Repeat what works"
-        subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-      />
+        subtitle="You"
+      /> */}
     </>
   );
 };

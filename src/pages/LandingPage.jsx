@@ -40,11 +40,11 @@ const LandingPage = () => {
 
       <div className="space-y-36 bg-zinc-50 pb-24 pt-24 md:pt-32">
         <FeatureToggles />
-        <Stats />
-        <Supports />
+        {/* <Stats /> */}
+        {/* <Supports /> */}
         <BenefitsGrid />
         <Pricing />
-        <BlogCarousel />
+        {/* <BlogCarousel /> */}
       </div>
       <EmailCapture />
       <FinalCTA />

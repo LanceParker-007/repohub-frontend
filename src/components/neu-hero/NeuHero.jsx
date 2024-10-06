@@ -30,7 +30,16 @@ import {
   SiEpicgames,
   SiGenius,
   SiGodaddy,
+  SiYoutube,
+  SiInstagram,
+  SiTiktok,
+  SiUnity,
+  SiCodeberg,
+  SiLeetcode,
+  SiUnrealengine,
+  SiGodotengine,
 } from "react-icons/si";
+import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 
 export const NeuHero = () => {
   return (
@@ -64,14 +73,14 @@ const Copy = () => {
         </a>
       </div>
       <h1 className="max-w-4xl text-center text-4xl font-black leading-[1.15] md:text-6xl md:leading-[1.15]">
-        Launch your product with a cool landing page
+        Monetize your private Github Repos within a minute!
       </h1>
       <p className="mx-auto my-4 max-w-3xl text-center text-base leading-relaxed md:my-6 md:text-xl md:leading-relaxed">
-        Your 1-2 sentence elevator pitch for what your product does and why goes
-        here. Be concise, get to the point, don't use jargon.
+        Repo.Hub! It is github repositories market place, helping you monetizing
+        your code 🙌
       </p>
       <button className="rounded-lg bg-indigo-600 p-3 uppercase text-white transition-colors hover:bg-indigo-700">
-        <span className="font-bold">Get started - </span> no CC required
+        <span className="font-bold">Get started 🚀 </span>
       </button>
     </>
   );
@@ -87,7 +96,7 @@ const MockupScreen = () => {
           <span className="size-2 rounded-full bg-green-400" />
         </div>
         <span className="rounded bg-zinc-600 px-2 py-0.5 text-xs text-zinc-100">
-          your-website.com
+          repo.hub
         </span>
         <FiChevronDown className="text-white" />
       </div>
@@ -97,15 +106,15 @@ const MockupScreen = () => {
           <div className="mt-3 space-y-1.5">
             <span className="flex items-center gap-1.5 text-xs text-indigo-600">
               <FiMessageCircle />
-              <span>Messages</span>
+              <span>Browse</span>
             </span>
             <span className="flex items-center gap-1.5 text-xs">
               <FiCheck />
-              <span>Tasks</span>
+              <span>Profile</span>
             </span>
             <span className="flex items-center gap-1.5 text-xs">
               <FiList />
-              <span>Board</span>
+              <span>Publish Repo</span>
             </span>
           </div>
         </div>
@@ -210,30 +219,28 @@ const LogoItem = ({ Icon, name }) => {
 
 const LogoItemsTop = () => (
   <>
-    <LogoItem Icon={SiNike} name="Nike" />
-    <LogoItem Icon={Si3M} name="3M" />
-    <LogoItem Icon={SiAbstract} name="Abstract" />
-    <LogoItem Icon={SiAdobe} name="Adobe" />
-    <LogoItem Icon={SiAirtable} name="Airtable" />
-    <LogoItem Icon={SiAmazon} name="Amazon" />
-    <LogoItem Icon={SiBox} name="Box" />
-    <LogoItem Icon={SiBytedance} name="Bytedance" />
-    <LogoItem Icon={SiChase} name="Chase" />
-    <LogoItem Icon={SiCloudbees} name="Cloudebees" />
+    <LogoItem Icon={ArrowBigLeft} name="Promote your repo on" />
+    <LogoItem Icon={ArrowBigRight} name="" />
+    <LogoItem Icon={SiYoutube} name="Youtuber" />
+    <LogoItem Icon={SiInstagram} name="Instagram" />
+    <LogoItem Icon={SiTiktok} name="Tiktok" />
+    <LogoItem Icon={SiUnity} name="Unity" />
+    <LogoItem Icon={SiLeetcode} name="Leetcode" />
+    <LogoItem Icon={SiUnrealengine} name="Unreal Enginer" />
+    <LogoItem Icon={SiGodotengine} name="Godot" />
   </>
 );
 
 const LogoItemsBottom = () => (
   <>
-    <LogoItem Icon={SiBmw} name="BMW" />
-    <LogoItem Icon={SiBurton} name="Burton" />
-    <LogoItem Icon={SiBuildkite} name="Buildkite" />
-    <LogoItem Icon={SiCouchbase} name="Couchbase" />
-    <LogoItem Icon={SiDailymotion} name="Dailymotion" />
-    <LogoItem Icon={SiDeliveroo} name="deliveroo" />
-    <LogoItem Icon={SiEpicgames} name="Epic Games" />
-    <LogoItem Icon={SiGenius} name="Genius" />
-    <LogoItem Icon={SiGodaddy} name="GoDaddy" />
-    <LogoItem Icon={SiHeroku} name="Heroku" />
+    <LogoItem Icon={ArrowBigLeft} name="Promote your repo on" />
+    <LogoItem Icon={ArrowBigRight} name="" />
+    <LogoItem Icon={SiYoutube} name="Youtuber" />
+    <LogoItem Icon={SiInstagram} name="Instagram" />
+    <LogoItem Icon={SiTiktok} name="Tiktok" />
+    <LogoItem Icon={SiUnity} name="Unity" />
+    <LogoItem Icon={SiLeetcode} name="Leetcode" />
+    <LogoItem Icon={SiUnrealengine} name="Unreal Enginer" />
+    <LogoItem Icon={SiGodotengine} name="Godot" />
   </>
 );

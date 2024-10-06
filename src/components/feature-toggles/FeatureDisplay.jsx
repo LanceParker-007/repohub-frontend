@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { Button } from "../shared/Button";
+import { Link } from "react-router-dom";
 
 export const FeatureDisplay = ({
   selected,
@@ -39,11 +40,13 @@ export const FeatureDisplay = ({
             </motion.div>
           </AnimatePresence>
         </div>
-        <Button>
-          <span className="font-bold">Get started - </span> no CC required
-        </Button>
+        <Link to="/signin">
+          <Button>
+            <span className="font-bold">Get started 🚀 </span>
+          </Button>
+        </Link>
       </div>
-      <div className="relative col-span-1 min-h-80 border-l-0 border-t-2 border-zinc-900 bg-zinc-100 shadow-inner shadow-zinc-500 md:col-span-5 md:border-l-2 md:border-t-0">
+      {/* <div className="relative col-span-1 min-h-80 border-l-0 border-t-2 border-zinc-900 bg-zinc-100 shadow-inner shadow-zinc-500 md:col-span-5 md:border-l-2 md:border-t-0">
         <AnimatePresence mode="popLayout">
           <motion.div
             initial={{
@@ -71,7 +74,7 @@ export const FeatureDisplay = ({
             <Component />
           </motion.div>
         </AnimatePresence>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { HighlighBlocks } from "./HighlighBlocks";
 import { SectionHeading } from "../shared/SectionHeading";
 import { SectionSubheading } from "../shared/SectionSubheading";
 import { Button } from "../shared/Button";
+import { Link } from "react-router-dom";
 
 export const BenefitsGrid = () => {
   return (
@@ -18,19 +19,20 @@ export const BenefitsGrid = () => {
       className="relative mx-auto grid max-w-6xl grid-cols-3 gap-4 px-2 md:px-4"
     >
       <div className="col-span-3">
-        <SectionHeading>The clear benefits of X</SectionHeading>
+        <SectionHeading>The clear benefits of Repo.Hub</SectionHeading>
         <SectionSubheading>
-          Features are good, benefits are even better! Here's a made up list for
-          reference.
+          Features are good, benefits are even better!
         </SectionSubheading>
       </div>
-      <IntegrationsBlock />
+      {/* <IntegrationsBlock /> */}
       <CollaborateBlock />
       <HighlighBlocks />
       <div className="col-span-3 mt-6 flex justify-center">
-        <Button intent="outline">
-          <span className="font-bold">Get started - </span> no CC required
-        </Button>
+        <Link to="/signin">
+          <Button intent="outline">
+            <span className="font-bold">Get started 🚀</span>
+          </Button>
+        </Link>
       </div>
     </motion.section>
   );

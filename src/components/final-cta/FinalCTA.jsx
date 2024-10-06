@@ -2,6 +2,7 @@ import React from "react";
 import { SectionHeading } from "../shared/SectionHeading";
 import { LogoLarge } from "../navigation/Logo";
 import { Button } from "../shared/Button";
+import { Link } from "react-router-dom";
 
 export const FinalCTA = () => {
   return (
@@ -10,12 +11,13 @@ export const FinalCTA = () => {
         <LogoLarge />
         <SectionHeading>Ready to go?</SectionHeading>
         <p className="mx-auto mb-8 text-center text-base leading-relaxed md:text-xl md:leading-relaxed">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
-          blanditiis?
+          All the best with your freedom journey 🙌
         </p>
-        <Button intent="primary">
-          <span className="font-bold">Get started - </span> no CC required
-        </Button>
+        <Link to="/signin">
+          <Button intent="primary">
+            <span className="font-bold">Get started 🚀</span>
+          </Button>
+        </Link>
       </div>
     </section>
   );

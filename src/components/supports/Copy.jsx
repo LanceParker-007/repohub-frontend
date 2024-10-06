@@ -9,7 +9,7 @@ export const Copy = ({ selected, setSelected }) => {
         Show who it's for
       </span>
       <h2 className="mb-3 text-center text-4xl font-bold leading-tight md:text-start md:text-5xl md:leading-tight">
-        Support your business, big or small
+        Support your hard work
       </h2>
       <p className="mb-6 text-center text-base leading-relaxed md:text-start md:text-lg md:leading-relaxed">
         Now we know WHAT you do, but who do you do it for? Why do they use it?

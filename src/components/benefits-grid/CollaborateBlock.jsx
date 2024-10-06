@@ -14,30 +14,31 @@ export const CollaborateBlock = () => (
           <FiEdit className="text-4xl" />
         </div>
 
-        <Cursor nameText="John Smith" />
+        <Cursor nameText="Svelte" />
         <Cursor
-          nameText="Erin Brown"
+          nameText="Next Js"
           wrapperClassName="top-[10%] left-[10%]"
           cursorClassName="text-blue-500"
           nameClassName="border-blue-900 bg-blue-200 text-blue-900"
         />
         <Cursor
-          nameText="Frank Daniels"
+          nameText="React"
           wrapperClassName="top-[20%] left-[75%]"
           cursorClassName="text-green-500"
           nameClassName="border-green-900 bg-green-200 text-green-900"
         />
         <Cursor
-          nameText="Andrea Green"
+          nameText="Java"
           wrapperClassName="top-[70%] left-[5%]"
           cursorClassName="text-orange-500"
           nameClassName="border-orange-900 bg-orange-200 text-orange-900"
         />
       </div>
       <div>
-        <CardTitle>Collaborate seamlessly</CardTitle>
+        <CardTitle>Integrate your repos seamlessly</CardTitle>
         <CardSubtitle>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          You can seamlessly integrate your repos into the repo.hub and start
+          monetizing!
         </CardSubtitle>
       </div>
     </div>
