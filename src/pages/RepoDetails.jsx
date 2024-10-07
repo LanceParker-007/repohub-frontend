@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -58,7 +59,7 @@ const handleShare = (repo) => {
     navigator
       .share({
         title: repo.title,
-        text: repo.description,
+        text: repo?.description?.substring(0, 60),
         url: window.location.href,
       })
       .then(() => console.log("Shared successfully!"))
@@ -120,6 +121,61 @@ export const ImageWithAmbience = ({ src, alt }) => {
   );
 };
 
+const BuyButton = ({ repoDetails }) => {
+  const {
+    userDetails: { githubUserId },
+    purchasedRepos,
+  } = useSelector((state) => state.userSliceReducer);
+
+  const checkIfUserCanDownloadRepo = () => {
+    console.log(repoDetails, githubUserId);
+
+    if (repoDetails?.owner?.githubId.toString() === githubUserId.toString())
+      return true;
+
+    if (
+      purchasedRepos?.find(
+        (purRepo) =>
+          purRepo.repoId?.toString() === repoDetails?.repoId?.toString()
+      )
+    )
+      return true;
+
+    return false;
+  };
+
+  return checkIfUserCanDownloadRepo() ? (
+    <motion.button
+      whileTap={{ scale: 0.95 }}
+      className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 flex items-center"
+    >
+      <FiShoppingCart className="mr-2" />
+      Download
+    </motion.button>
+  ) : (
+    <motion.button
+      whileTap={{ scale: 0.95 }}
+      className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 flex items-center"
+    >
+      <FiShoppingCart className="mr-2" />
+      Buy
+    </motion.button>
+  );
+};
+
+const ShareButton = ({ repoDetails }) => {
+  return (
+    <motion.button
+      whileTap={{ scale: 0.95 }}
+      className="bg-gray-200 text-indigo-600 px-4 py-2 rounded-md hover:bg-gray-300 flex items-center"
+      onClick={() => handleShare(repoDetails)}
+    >
+      <FiShare2 className="mr-2" />
+      Share
+    </motion.button>
+  );
+};
+
 const RepoDetails = () => {
   const { repoId } = useParams();
   const [repoDetails, setRepoDetails] = useState(null);
@@ -141,11 +197,12 @@ const RepoDetails = () => {
     const fetchRepoDetails = async () => {
       try {
         setLoading(true);
-        const response = await axios.post(
+        const { data } = await axios.post(
           `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/repo/details`,
           { repoId }
         );
-        setRepoDetails(response.data.data);
+
+        setRepoDetails(data.data);
       } catch (error) {
         setError("Failed to load repository details.");
       } finally {
@@ -172,133 +229,105 @@ const RepoDetails = () => {
     );
   }
 
-  console.log(repoDetails);
+  return repoDetails ? (
+    <div className="flex-1 flex flex-col overflow-hidden bg-gray-100">
+      {/* Fixed Header */}
+      <header className="bg-white border-b border-slate-300 p-3.5 flex items-center justify-between shadow-md w-full">
+        <div className="flex items-center">
+          <Link
+            to="/home"
+            className="text-indigo-600 hover:text-indigo-800 mr-4"
+          >
+            <FiChevronLeft size={24} />
+          </Link>
+          <h1 className="hidden md:block text-2xl font-bold text-slate-800">
+            Product Details
+          </h1>
+        </div>
+        <div className="flex gap-4">
+          <BuyButton repoDetails={repoDetails} />
+          <ShareButton repoDetails={repoDetails} />
+        </div>
+      </header>
 
-  return (
-    repoDetails && (
-      <div className="flex-1 flex flex-col overflow-hidden bg-gray-100">
-        {/* Fixed Header */}
-        <header className="bg-white border-b border-slate-300 p-3.5 flex items-center justify-between shadow-md w-full">
-          <div className="flex items-center">
-            <Link
-              to="/home"
-              className="text-indigo-600 hover:text-indigo-800 mr-4"
-            >
-              <FiChevronLeft size={24} />
-            </Link>
-            <h1 className="text-2xl font-bold text-slate-800">
-              Product Details
-            </h1>
-          </div>
-          <div className="flex gap-4">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 flex items-center"
-            >
-              <FiShoppingCart className="mr-2" />
-              Buy
-            </motion.button>
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              className="bg-gray-200 text-indigo-600 px-4 py-2 rounded-md hover:bg-gray-300 flex items-center"
-              onClick={() => handleShare(repoDetails)}
-            >
-              <FiShare2 className="mr-2" />
-              Share
-            </motion.button>
-          </div>
-        </header>
-
-        {/* Main content */}
-        <main className="flex-1 overflow-auto p-3 mt-16">
-          <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-            {/* Carousel */}
-            <div className="w-full">
-              <Slider {...settings} className="product-carousel">
-                {repoDetails.mediaLinks.map((media, index) => (
-                  <div
-                    key={index}
-                    className="rounded-md bg-green-100 flex justify-center items-center h-96"
-                  >
-                    <div className="w-full h-full flex justify-center items-center">
-                      {isVideo(media) ? (
-                        isYouTubeVideo(media) ? (
-                          <iframe
-                            className="w-full h-full"
-                            src={getYouTubeEmbedUrl(media)}
-                            title={`${repoDetails.title} - Video ${index + 1}`}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                        ) : (
-                          <video
-                            className="max-w-full max-h-full object-contain"
-                            controls
-                            src={media}
-                            alt={`${repoDetails.title} - Video ${index + 1}`}
-                          />
-                        )
-                      ) : (
-                        <ImageWithAmbience
-                          src={media}
-                          alt={`${repoDetails.title} - Image ${index + 1}`}
+      {/* Main content */}
+      <main className="flex-1 overflow-auto p-3 mt-16">
+        <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+          {/* Carousel */}
+          <div className="w-full">
+            <Slider {...settings} className="product-carousel">
+              {repoDetails.mediaLinks.map((media, index) => (
+                <div
+                  key={index}
+                  className="rounded-md bg-green-100 flex justify-center items-center h-96"
+                >
+                  <div className="w-full h-full flex justify-center items-center">
+                    {isVideo(media) ? (
+                      isYouTubeVideo(media) ? (
+                        <iframe
+                          className="w-full h-full"
+                          src={getYouTubeEmbedUrl(media)}
+                          title={`${repoDetails.title} - Video ${index + 1}`}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
                         />
-                      )}
-                    </div>
+                      ) : (
+                        <video
+                          className="max-w-full max-h-full object-contain"
+                          controls
+                          src={media}
+                          alt={`${repoDetails.title} - Video ${index + 1}`}
+                        />
+                      )
+                    ) : (
+                      <ImageWithAmbience
+                        src={media}
+                        alt={`${repoDetails.title} - Image ${index + 1}`}
+                      />
+                    )}
                   </div>
-                ))}
-              </Slider>
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          {/* Product Details */}
+          <div className="p-6">
+            <h2 className="text-3xl font-bold text-slate-800">
+              {repoDetails.title}
+            </h2>
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+              By {repoDetails?.owner?.username}
             </div>
+            <p className="mt-2 text-slate-600 whitespace-pre-line text-justify">
+              {repoDetails.description}
+            </p>
 
-            {/* Product Details */}
-            <div className="p-6">
-              <h2 className="text-3xl font-bold text-slate-800">
-                {repoDetails.title}
-              </h2>
-              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                By {repoDetails?.owner?.username}
-              </div>
-              <p className="mt-2 text-slate-600 whitespace-pre-line text-justify">
-                {repoDetails.description}
-              </p>
-
-              {/* Price, Buy, and Share */}
-              <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center">
-                <span className="text-3xl font-bold text-indigo-600">
-                  ${repoDetails.price.toFixed(2)}
-                </span>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-indigo-500 text-white px-6 py-3 rounded-md hover:bg-indigo-600 flex items-center"
-                >
-                  <FiShoppingCart className="mr-2" />
-                  Buy
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gray-200 text-indigo-600 px-4 py-3 rounded-md hover:bg-gray-300 flex items-center"
-                  onClick={handleShare}
-                >
-                  <FiShare2 className="mr-2" />
-                  Share
-                </motion.button>
-              </div>
+            {/* Price, Buy, and Share */}
+            <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center">
+              <span className="text-3xl font-bold text-indigo-600">
+                ${repoDetails.price.toFixed(2)}
+              </span>
+              <BuyButton repoDetails={repoDetails} />
+              <ShareButton repoDetails={repoDetails} />
             </div>
           </div>
-        </main>
+        </div>
+      </main>
 
-        {/* Back to Top Button */}
-        <motion.button
-          className="fixed bottom-8 right-8 bg-indigo-500 text-white p-3 rounded-full shadow-lg hover:bg-indigo-600"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={scrollToTop}
-        >
-          <FiArrowUp size={24} />
-        </motion.button>
-      </div>
-    )
+      {/* Back to Top Button */}
+      <motion.button
+        className="fixed bottom-8 right-8 bg-indigo-500 text-white p-3 rounded-full shadow-lg hover:bg-indigo-600"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={scrollToTop}
+      >
+        <FiArrowUp size={24} />
+      </motion.button>
+    </div>
+  ) : (
+    <>No Repo found!</>
   );
 };
 

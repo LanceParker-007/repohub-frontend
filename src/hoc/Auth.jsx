@@ -33,6 +33,7 @@ const Auth = ({ children }) => {
       } else {
         dispatch(setPublishedRepos([]));
       }
+
       if (localStorage.getItem("purchasedRepos")) {
         dispatch(
           setPurchasedRepos(JSON.parse(localStorage.getItem("purchasedRepos")))

@@ -10,14 +10,30 @@ import PurchasedRepos from "./PurchasedRepos";
 import Analytics from "./Analytics";
 import Auth from "../hoc/Auth";
 import RepoDetails from "./RepoDetails";
+import FillUserDetails from "../hoc/FillUserDetails";
+import NavigateTo from "../hoc/NavigateTo";
 
 const Home = () => {
   return (
     <div className="flex bg-indigo-50">
       <RetractingSidebar />
       <Routes>
-        <Route path="/" element={<MarketPlace />} />
-        <Route path="/:repoId" element={<RepoDetails />} />
+        <Route
+          path="/"
+          element={
+            <FillUserDetails>
+              <MarketPlace />
+            </FillUserDetails>
+          }
+        />
+        <Route
+          path="/:repoId"
+          element={
+            <FillUserDetails>
+              <RepoDetails />
+            </FillUserDetails>
+          }
+        />
         <Route
           path="/profile"
           element={
@@ -66,6 +82,7 @@ const Home = () => {
             </Auth>
           }
         />
+        <Route path="/*" element={<NavigateTo to="/home" />} />
       </Routes>
     </div>
   );
