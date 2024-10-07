@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiMenu, FiArrowRight } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FlipNavWrapper = ({ children }) => {
   return (
@@ -58,19 +58,34 @@ const NavLeft = ({ setIsOpen }) => {
         <FiMenu />
       </motion.button>
       <Logo />
-      <NavLink text="Features" />
-      <NavLink text="Pricing" />
-      <NavLink text="About" />
-      <NavLink text="Privacy" />
-      <NavLink text="T&C" />
+      <NavLink text="Browse Repos" to="/home" />
+      <NavLink text="Features" toSection="features" />
+      <NavLink text="Pricing" toSection="pricing" />
+      <NavLink text="Privacy Policy" to="/privacy-policy" />
+      <NavLink text="T&C" to="/terms-and-conditions" />
     </div>
   );
 };
 
-const NavLink = ({ text }) => {
+const NavLink = ({ text, to, toSection }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (toSection) {
+      const element = document.getElementById(toSection);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (to) {
+      navigate(to);
+    }
+  };
+
   return (
     <a
-      href="#"
+      href={toSection ? `#${toSection}` : to}
+      onClick={handleClick}
       rel="nofollow"
       className="hidden lg:block h-[30px] overflow-hidden font-medium"
     >
@@ -108,36 +123,52 @@ const NavMenu = ({ isOpen }) => {
       animate={isOpen ? "open" : "closed"}
       className="absolute p-4 bg-white shadow-lg left-0 right-0 top-full origin-top flex flex-col gap-4"
     >
-      <MenuLink text="Solutions" />
-      <MenuLink text="Features" />
-      <MenuLink text="Pricing" />
-      <MenuLink text="About" />
-      <MenuLink text="T&C" />
+      <MenuLink text="Browse Repos" to="home" />
+      <MenuLink text="Features" toSection="features" />
+      <MenuLink text="Pricing" toSection="pricing" />
+      <MenuLink text="Privacy Policy" to="privacy-policy" />
+      <MenuLink text="T&C" to="terms-and-conditions" />
     </motion.div>
   );
 };
 
-const MenuLink = ({ text }) => {
+const MenuLink = ({ text, to, toSection }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (toSection) {
+      const element = document.getElementById(toSection);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (to) {
+      navigate(to);
+    }
+  };
+
   return (
-    <motion.a
-      variants={menuLinkVariants}
-      rel="nofollow"
-      href="#"
-      className="h-[30px] overflow-hidden font-medium text-lg flex items-start gap-2"
-    >
-      <motion.span variants={menuLinkArrowVariants}>
-        <FiArrowRight className="h-[30px] text-gray-950" />
+    <a href={toSection ? `#${toSection}` : to} onClick={handleClick}>
+      <motion.span
+        variants={menuLinkVariants}
+        rel="nofollow"
+        className="h-[30px] overflow-hidden font-medium text-lg flex items-start gap-2"
+      >
+        <motion.span variants={menuLinkArrowVariants}>
+          <FiArrowRight className="h-[30px] text-gray-950" />
+        </motion.span>
+        <motion.div whileHover={{ y: -30 }}>
+          <span className="flex items-center h-[30px] text-gray-500">
+            {text}
+          </span>
+          <span className="flex items-center h-[30px] text-indigo-600">
+            {text}
+          </span>
+        </motion.div>
       </motion.span>
-      <motion.div whileHover={{ y: -30 }}>
-        <span className="flex items-center h-[30px] text-gray-500">{text}</span>
-        <span className="flex items-center h-[30px] text-indigo-600">
-          {text}
-        </span>
-      </motion.div>
-    </motion.a>
+    </a>
   );
 };
-
 export default FlipNavWrapper;
 
 const menuVariants = {

@@ -44,7 +44,7 @@ import { Link } from "react-router-dom";
 
 export const NeuHero = () => {
   return (
-    <section className="overflow-hidden bg-white">
+    <section id="about" className="overflow-hidden bg-white">
       <div className="relative flex flex-col items-center justify-center px-12 pb-48 pt-12 md:pt-24">
         <Copy />
         <MockupScreen />
@@ -74,7 +74,7 @@ const Copy = () => {
         </a>
       </div>
       <h1 className="max-w-4xl text-center text-4xl font-black leading-[1.15] md:text-6xl md:leading-[1.15]">
-        Monetize your private Github Repos within a minute!
+        Monetize your private Github Repos easily!
       </h1>
       <p className="mx-auto my-4 max-w-3xl text-center text-base leading-relaxed md:my-6 md:text-xl md:leading-relaxed">
         Repo.Hub! It is github repositories market place, helping you monetizing

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export const Pricing = () => {
   return (
-    <section className="mx-auto max-w-7xl px-2 md:px-4">
+    <section id="pricing" className="mx-auto max-w-7xl px-2 md:px-4">
       <SectionHeading>Earnings Distribution!</SectionHeading>
 
       <div className="mt-6 lg:mt-12 max-w-2xl mx-auto bg-red-100">

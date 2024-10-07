@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { VideoWithAmbience } from "../utils/VideoWithAmbience";
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -261,23 +262,10 @@ const RepoDetails = () => {
                 >
                   <div className="w-full h-full flex justify-center items-center">
                     {isVideo(media) ? (
-                      isYouTubeVideo(media) ? (
-                        <iframe
-                          className="w-full h-full"
-                          src={getYouTubeEmbedUrl(media)}
-                          title={`${repoDetails.title} - Video ${index + 1}`}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      ) : (
-                        <video
-                          className="max-w-full max-h-full object-contain"
-                          controls
-                          src={media}
-                          alt={`${repoDetails.title} - Video ${index + 1}`}
-                        />
-                      )
+                      <VideoWithAmbience
+                        src={media}
+                        title={`${repoDetails.title} - Video ${index + 1}`}
+                      />
                     ) : (
                       <ImageWithAmbience
                         src={media}
