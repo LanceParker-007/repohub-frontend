@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../utils/axiosInstance";
 import RepoCard from "../components/repo-card/RepoCard";
+import axios from "axios";
 
 export default function MarketplaceDashboard() {
   const [repositories, setRepositories] = useState([]);
@@ -13,7 +13,7 @@ export default function MarketplaceDashboard() {
   const fetchRepositories = async (page, search) => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/repo/published`,
         {
           page,

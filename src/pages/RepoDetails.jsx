@@ -11,7 +11,7 @@ import {
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
-import axiosInstance from "../utils/axiosInstance";
+import axios from "axios";
 
 const NextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -120,7 +120,7 @@ export const ImageWithAmbience = ({ src, alt }) => {
   );
 };
 
-export default function ProductDetails() {
+const RepoDetails = () => {
   const { repoId } = useParams();
   const [repoDetails, setRepoDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -141,7 +141,7 @@ export default function ProductDetails() {
     const fetchRepoDetails = async () => {
       try {
         setLoading(true);
-        const response = await axiosInstance.post(
+        const response = await axios.post(
           `${import.meta.env.VITE_BACKEND_SERVER}/api/v1/repo/details`,
           { repoId }
         );
@@ -300,4 +300,6 @@ export default function ProductDetails() {
       </div>
     )
   );
-}
+};
+
+export default RepoDetails;
