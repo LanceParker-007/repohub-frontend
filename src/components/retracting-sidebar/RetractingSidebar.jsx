@@ -172,7 +172,7 @@ const RetractingSidebar = () => {
         (navOption) => navOption.to === window.location.href.slice(21)
       )?.title
     );
-  }, []);
+  });
 
   useEffect(() => {
     if (selected === "Logout") {

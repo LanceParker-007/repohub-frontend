@@ -336,7 +336,10 @@ const PublishRepo = () => {
                       </div>
                       {selectedRepo?.repoId === repo.repoId && (
                         <div className="mt-4 lg:hidden">
-                          <PublishForm />
+                          <PublishForm
+                            selectedRepo={selectedRepo}
+                            setSelectedRepo={setSelectedRepo}
+                          />
                         </div>
                       )}
                     </li>

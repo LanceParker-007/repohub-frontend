@@ -128,8 +128,6 @@ const BuyButton = ({ repoDetails }) => {
   } = useSelector((state) => state.userSliceReducer);
 
   const checkIfUserCanDownloadRepo = () => {
-    console.log(repoDetails, githubUserId);
-
     if (repoDetails?.owner?.githubId.toString() === githubUserId.toString())
       return true;
 
